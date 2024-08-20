@@ -1,4 +1,5 @@
 {
+  // @recommended
   "recommendations": [
     "wallabyjs.quokka-vscode",
     "achil.vscode-javascript-repl",
