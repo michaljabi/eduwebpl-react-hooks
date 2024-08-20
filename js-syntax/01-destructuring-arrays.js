@@ -3,7 +3,7 @@
 const fruits = ["apple", "banana", "mango", "cherry"]
 
 // take out 2nd element from array:
-const [, banana] = fruits
+const [, , , banana] = fruits
 
 console.log(banana)
 
@@ -16,9 +16,12 @@ function return2Things() {
 }
 
 // take out 1st and 2nd element from array returned form function
-const [count, setCount] = return2Things()
+const [count, setCountz] = return2Things()
 
 console.log(count)
-console.log(setCount)
+console.log(setCountz)
 
-setCount(12)
+setCountz(12)
+
+// CHECKOUT:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment

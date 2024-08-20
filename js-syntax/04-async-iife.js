@@ -41,3 +41,6 @@ console.log(getNumber())
 // 3: nowadays in Node.js and Browsers
 console.log(await getNumber2())
 // but we still need an async IIFE for useEffect() ⚠️
+
+// CHECKOUT:
+// https://developer.mozilla.org/en-US/docs/Glossary/IIFE

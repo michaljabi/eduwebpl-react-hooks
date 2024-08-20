@@ -17,9 +17,13 @@ console.log(newCar === car)
 
 // --------------------- EXAMPLE 2 ---------------------
 const fruits = ["apple", "banana", "cherry"]
+// fruits.push("mangoes")
 
 const moreFruits = [...fruits, "mango"]
 
 console.log(moreFruits)
 
 console.log(moreFruits === fruits)
+
+// CHECKOUT:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax

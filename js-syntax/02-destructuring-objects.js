@@ -3,11 +3,13 @@ const myUser = {
   name: "Mike",
   lastName: "Kowalsky",
   //age: 26,
+  onChange() {},
 }
+// const name = myUser.name;
 
-const { name, lastName, age } = myUser
+const { name: myName, lastName, age } = myUser
 
-console.log(name)
+console.log(myName)
 console.log(lastName)
 console.log(age)
 
@@ -20,3 +22,6 @@ function UserComponent({ name, lastName, age = 20, onChange = () => {} }) {
 }
 
 console.log(UserComponent(myUser))
+
+// CHECKOUT:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring
