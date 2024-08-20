@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "wallabyjs.quokka-vscode",
+    "achil.vscode-javascript-repl",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "nicholashsiang.vscode-react-snippet",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    // needed for: Path Intellisence extension:
+    "typescript.suggest.paths": false,
+    "javascript.suggest.paths": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+}

@@ -1,0 +1,40 @@
+{
+  "people": [
+    {
+      "name": "Eva",
+      "id": "c86d",
+      "email": "eva.smith@coolmail.net",
+      "bio": "Eva is a graphic designer with a passion for minimalistic and modern design. She has worked with various startups, helping them establish a strong visual identity."
+    },
+    {
+      "name": "Mark",
+      "id": "84ed",
+      "email": "mark.jones@webmail.org",
+      "bio": "Mark is a software engineer with over 10 years of experience in the tech industry. He specializes in backend development and enjoys working on open-source projects."
+    },
+    {
+      "name": "Krysia",
+      "id": "5fe8",
+      "email": "krysia.wilson@fastmail.com",
+      "bio": "Krysia is a passionate educator who loves teaching young children. She has a background in early childhood education and is dedicated to creating a nurturing learning environment."
+    },
+    {
+      "name": "John",
+      "id": "fdde",
+      "email": "john.doe@mailer.io",
+      "bio": "John is an avid traveler and freelance writer. He has visited over 50 countries and shares his experiences through his popular travel blog."
+    },
+    {
+      "name": "Edmund",
+      "id": "f863",
+      "email": "edmund.brown@netmail.co",
+      "bio": "Edmund is a historian with a deep interest in medieval history. He has published several articles in academic journals and enjoys giving lectures on his favorite topics."
+    },
+    {
+      "name": "Roman",
+      "id": "fr6w",
+      "email": "roman.davis@inboxhub.xyz",
+      "bio": "Roman is a fitness coach who specializes in strength training and nutrition. He works with clients of all levels, helping them achieve their health and fitness goals."
+    }
+  ]
+}
