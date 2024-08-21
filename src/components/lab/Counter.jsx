@@ -10,6 +10,12 @@ export function Counter() {
     // setCount((c) => c + 1)
   }
 
+  // setInterval(() => {
+  //   setCount((c) => c + 1)
+  // }, 1000)
+  // console.log("RENDER!")
+  // setCount(50)
+
   return (
     <div className="rounded p-6 border border-slate-400 text-center">
       <div className="m-6 p-3 text-2xl bg-gray-200 dark:bg-slate-800 rounded w-1/2 mx-auto">

@@ -23,6 +23,8 @@ export function MakeExchangeModalDialog({
     exchangeDate: "",
   })
 
+  // console.log("render!")
+
   return (
     <dialog
       id={dialogId}
@@ -38,9 +40,11 @@ export function MakeExchangeModalDialog({
             label="Party name"
             placeholder="name of the Exchange"
             value={myForm.partyName}
-            onChange={(ev) =>
+            onChange={(ev) => {
+              // myForm.partyName = ev.target.value
+              // setMyForm(myForm)
               setMyForm({ ...myForm, partyName: ev.target.value })
-            }
+            }}
           />
           <Input
             name="budget"
