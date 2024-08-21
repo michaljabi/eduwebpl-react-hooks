@@ -9,10 +9,17 @@ export function Counter() {
   const isToHigh = count >= 5
 
   useEffect(() => {
-    console.log("One time!")
-    setTimeout(() => {
-      setCount((c) => c + 1)
-    }, 2000)
+    console.log("componentDidMount")
+    const id = setTimeout(() => {
+      setCount((c) => {
+        console.log("componentDidUpdate")
+        return c + 1
+      })
+    }, 5000)
+    return () => {
+      console.log("componentWillUnmount")
+      clearTimeout(id)
+    }
   }, [])
 
   return (
