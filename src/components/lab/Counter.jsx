@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../ui/Button.jsx"
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react"
 import { Notification } from "../ui/Notification.jsx"
@@ -7,6 +7,13 @@ export function Counter() {
   const [count, setCount] = useState(1)
 
   const isToHigh = count >= 5
+
+  useEffect(() => {
+    console.log("One time!")
+    setTimeout(() => {
+      setCount((c) => c + 1)
+    }, 2000)
+  }, [])
 
   return (
     <div className="rounded p-6 border border-slate-400 text-center">
