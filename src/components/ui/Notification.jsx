@@ -8,7 +8,7 @@ Notification.propTypes = {
 }
 
 export function Notification({ children = "", type = "info", className = "" }) {
-  //console.log("%cNotification", `color: teal`, "fired")
+  console.log("%cNotification", `color: teal`, "fired")
 
   return (
     <div
