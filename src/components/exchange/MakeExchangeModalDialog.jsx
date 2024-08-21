@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import { Button } from "../ui/Button.jsx"
 import { Input } from "../ui/Input.jsx"
 import { CalendarIcon, DollarSignIcon } from "lucide-react"
+import { useState } from "react"
 
 MakeExchangeModalDialog.propTypes = {
   dialogId: PropTypes.string,
@@ -12,6 +13,16 @@ export function MakeExchangeModalDialog({
   dialogId = "",
   onConfirm = () => {},
 }) {
+  /*const [partyName, setPartyName] = useState("")
+  const [giftBudget, setGiftBudget] = useState(12)
+  const [exchangeDate, setExchangeDate] = useState("")*/
+
+  const [myForm, setMyForm] = useState({
+    partyName: "",
+    giftBudget: 8,
+    exchangeDate: "",
+  })
+
   return (
     <dialog
       id={dialogId}
@@ -26,34 +37,36 @@ export function MakeExchangeModalDialog({
             name="name"
             label="Party name"
             placeholder="name of the Exchange"
-            value={"example"}
+            value={myForm.partyName}
+            onChange={(ev) =>
+              setMyForm({ ...myForm, partyName: ev.target.value })
+            }
           />
           <Input
             name="budget"
             label="Gift budget"
             type="number"
             icon={<DollarSignIcon size={18} />}
+            value={myForm.giftBudget}
+            onChange={(ev) =>
+              setMyForm({ ...myForm, giftBudget: ev.target.valueAsNumber })
+            }
           />
           <Input
             name="date"
             label="Exchange date"
             type="datetime-local"
             icon={<CalendarIcon size={18} />}
+            value={myForm.exchangeDate}
+            onChange={(ev) =>
+              setMyForm({ ...myForm, exchangeDate: ev.target.value })
+            }
           />
           <div className="flex items-center justify-end mt-4">
             <Button as="secondary" type="submit">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              onClick={() =>
-                onConfirm({
-                  partyName: "TO-DO",
-                  giftBudget: 10,
-                  exchangeDate: "2024-12-01T10:00:00Z",
-                })
-              }
-            >
+            <Button type="submit" onClick={() => onConfirm(myForm)}>
               Make new exchange
             </Button>
           </div>
