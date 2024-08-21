@@ -8,6 +8,12 @@ export function Counter() {
 
   const isToHigh = count >= 5
 
+  // TASK:
+  // level 3: Approaching to the monster...
+  // level 5: You are close...
+  // level 6: Danger ahead...
+  // level 7: You get caught 🧌!
+
   useEffect(() => {
     console.log("componentDidMount")
     const id = setTimeout(() => {
