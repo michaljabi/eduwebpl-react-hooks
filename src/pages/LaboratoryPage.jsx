@@ -2,7 +2,7 @@ import { PageLayout } from "../layouts/PageLayout.jsx"
 import { Notification } from "../components/ui/Notification.jsx"
 import { Inception } from "../components/lab/Inception.jsx"
 import { Counter } from "../components/lab/Counter.jsx"
-import { CounterClass } from "../components/lab/CounterClass.jsx"
+// import { CounterClass } from "../components/lab/CounterClass.jsx"
 
 export function LaboratoryPage() {
   console.log("🧪 %cLaboratoryPage", `color: teal`, "fired")
@@ -14,7 +14,7 @@ export function LaboratoryPage() {
       </Notification>
       <section className="my-8 flex justify-center">
         <Counter />
-        <CounterClass />
+        {/*<CounterClass />*/}
       </section>
       <Inception />
     </PageLayout>
