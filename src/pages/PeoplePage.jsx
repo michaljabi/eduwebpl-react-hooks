@@ -93,7 +93,7 @@ export function PeoplePage({ noOutlet = false }) {
                 actions={
                   <button
                     className="text-gray-500 hover:text-gray-800 p-2"
-                    onClick={() => navigate(`/people/${name}`)}
+                    onClick={() => navigate(`/people/${id}`)}
                   >
                     <InfoIcon />
                   </button>

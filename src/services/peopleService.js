@@ -11,4 +11,7 @@ export const peopleService = {
   addPerson({ name, email }, signal) {
     return axiosInstance.post("/people", { name, email }, { signal })
   },
+  getPerson(id, signal) {
+    return axiosInstance.get(`/people/${id}`, { signal })
+  },
 }
