@@ -1,39 +1,13 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
 import { Notification } from "../components/ui/Notification.jsx"
-import { peopleService } from "../services/peopleService.js"
+import { usePeopleQuery } from "../hooks/usePeopleQuery.js"
 
 export function PersonInfoPage() {
-  const [person, setPerson] = useState({})
-  const [isLoading, setLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState("")
   const { personId } = useParams()
+  const { data: person, isLoading, errorMessage } = usePeopleQuery([], personId)
 
   const isReady = Boolean(person.email)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    ;(async () => {
-      setLoading(true)
-      try {
-        const { data } = await peopleService.getPerson(
-          personId,
-          controller.signal,
-        )
-        setPerson(data)
-      } catch (error) {
-        setErrorMessage(error.message)
-      } finally {
-        setLoading(false)
-      }
-    })()
-
-    return () => {
-      controller.abort()
-    }
-  }, [personId])
 
   return (
     <PageLayout title="Person info">

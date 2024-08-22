@@ -1,24 +1,23 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { ListItem } from "../components/ui/ListItem.jsx"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { SearchBox } from "../components/SearchBox.jsx"
 import { Outlet, useNavigate } from "react-router-dom"
 import PropTypes from "prop-types"
-import { peopleService } from "../services/peopleService.js"
 import { Notification } from "../components/ui/Notification.jsx"
 import { Button } from "../components/ui/Button.jsx"
 import { InfoIcon } from "lucide-react"
 import { MakeExchangeModalDialog } from "../components/exchange/MakeExchangeModalDialog.jsx"
 import { List } from "../components/ui/List.jsx"
+import { usePeopleQuery } from "../hooks/usePeopleQuery.js"
 
 PeoplePage.propTypes = {
   noOutlet: PropTypes.bool,
 }
 
 export function PeoplePage({ noOutlet = false }) {
-  const [people, setPeople] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const { data: people, isLoading, errorMessage } = usePeopleQuery([])
+
   const navigate = useNavigate()
   const [searchText, setSearchText] = useState("")
   const [selectedIds, setSelectedIds] = useState([])
@@ -41,29 +40,6 @@ export function PeoplePage({ noOutlet = false }) {
     }
     setSelectedIds([...selectedIds, id])
   }
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    ;(async () => {
-      setErrorMessage("")
-      setIsLoading(true)
-      try {
-        const { data } = await peopleService.getPeople(controller.signal)
-        setPeople(data)
-      } catch (e) {
-        console.error(e)
-        setErrorMessage(e.message)
-        setPeople([])
-      } finally {
-        setIsLoading(false)
-      }
-    })()
-
-    return () => {
-      controller.abort()
-    }
-  }, [])
 
   const filteredPeople = people.filter(({ name }) =>
     name.toLowerCase().includes(searchText.toLowerCase()),
