@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { Button } from "../ui/Button.jsx"
 import { Input } from "../ui/Input.jsx"
 import { CalendarIcon, DollarSignIcon } from "lucide-react"
-import { useState } from "react"
+import { useStateSlice } from "../../hooks/useStateSlice.js"
 
 MakeExchangeModalDialog.propTypes = {
   dialogId: PropTypes.string,
@@ -20,7 +20,7 @@ export function MakeExchangeModalDialog({
   // TASK:
   // make useStateSlice() hook, to deal with no mutable update of partial Object state.
 
-  const [myForm, setMyForm] = useState({
+  const [myForm, setMyForm] = useStateSlice({
     partyName: "",
     giftBudget: 8,
     exchangeDate: "",
@@ -46,7 +46,7 @@ export function MakeExchangeModalDialog({
             onChange={(ev) => {
               // myForm.partyName = ev.target.value
               // setMyForm(myForm)
-              setMyForm({ ...myForm, partyName: ev.target.value })
+              setMyForm({ partyName: ev.target.value })
             }}
           />
           <Input
@@ -56,7 +56,7 @@ export function MakeExchangeModalDialog({
             icon={<DollarSignIcon size={18} />}
             value={myForm.giftBudget}
             onChange={(ev) =>
-              setMyForm({ ...myForm, giftBudget: ev.target.valueAsNumber })
+              setMyForm({ giftBudget: ev.target.valueAsNumber })
             }
           />
           <Input
@@ -65,9 +65,7 @@ export function MakeExchangeModalDialog({
             type="datetime-local"
             icon={<CalendarIcon size={18} />}
             value={myForm.exchangeDate}
-            onChange={(ev) =>
-              setMyForm({ ...myForm, exchangeDate: ev.target.value })
-            }
+            onChange={(ev) => setMyForm({ exchangeDate: ev.target.value })}
           />
           <div className="flex items-center justify-end mt-4">
             <Button as="secondary" type="submit">
