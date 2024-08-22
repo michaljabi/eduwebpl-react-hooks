@@ -5,10 +5,10 @@ const axiosInstance = axios.create({
 })
 
 export const peopleService = {
-  getPeople() {
-    return axiosInstance.get("/people")
+  getPeople(signal) {
+    return axiosInstance.get("/people", { signal })
   },
-  addPerson({ name, email }) {
-    return axiosInstance.post("/people", { name, email })
+  addPerson({ name, email }, signal) {
+    return axiosInstance.post("/people", { name, email }, { signal })
   },
 }

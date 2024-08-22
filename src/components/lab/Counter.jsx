@@ -5,10 +5,13 @@ import { Notification } from "../ui/Notification.jsx"
 
 export function Counter() {
   const [count, setCount] = useState(1)
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("hello ")
 
   const isToHigh = count >= 5
 
+  const sayHello = () => {
+    setMessage((m) => m + "?")
+  }
   // TASK:
   // level 3: Approaching to the monster...
   // level 5: You are close...
@@ -23,14 +26,15 @@ export function Counter() {
       setMessage("Approaching to the monster...")
     }
     if (count === 5) {
-      setMessage("You are close...")
+      setMessage((m) => m + ", You are close...")
     }
     if (count === 6) {
-      setMessage("Danger ahead...")
+      setMessage((m) => m + ", Danger ahead...")
     }
     if (count === 7) {
-      setMessage("You get caught 🧌!")
+      setMessage((m) => m + ", You get caught 🧌!")
     }
+    sayHello()
   }, [count])
 
   return (

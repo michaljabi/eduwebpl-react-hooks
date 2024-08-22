@@ -43,11 +43,13 @@ export function PeoplePage({ noOutlet = false }) {
   }
 
   useEffect(() => {
+    const controller = new AbortController()
+
     ;(async () => {
       setErrorMessage("")
       setIsLoading(true)
       try {
-        const { data } = await peopleService.getPeople()
+        const { data } = await peopleService.getPeople(controller.signal)
         setPeople(data)
       } catch (e) {
         console.error(e)
@@ -57,6 +59,10 @@ export function PeoplePage({ noOutlet = false }) {
         setIsLoading(false)
       }
     })()
+
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   const filteredPeople = people.filter(({ name }) =>
