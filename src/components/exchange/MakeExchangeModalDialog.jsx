@@ -17,6 +17,9 @@ export function MakeExchangeModalDialog({
   const [giftBudget, setGiftBudget] = useState(12)
   const [exchangeDate, setExchangeDate] = useState("")*/
 
+  // TASK:
+  // make useStateSlice() hook, to deal with no mutable update of partial Object state.
+
   const [myForm, setMyForm] = useState({
     partyName: "",
     giftBudget: 8,
