@@ -6,21 +6,9 @@ import { Notification } from "../ui/Notification.jsx"
 export function Counter() {
   const [count, setCount] = useState(1)
   const [message, setMessage] = useState("hello ")
-
-  const isToHigh = count >= 5
-
-  const sayHello = () => {
-    setMessage((m) => m + "?")
-  }
-  // TASK:
-  // level 3: Approaching to the monster...
-  // level 5: You are close...
-  // level 6: Danger ahead...
-  // level 7: You get caught 🧌!
   useEffect(() => {
     console.log("Component created !")
   }, [])
-
   useEffect(() => {
     if (count === 3) {
       setMessage("Approaching to the monster...")
@@ -36,6 +24,16 @@ export function Counter() {
     }
     sayHello()
   }, [count])
+
+  const isToHigh = count >= 5
+
+  const sayHello = () => {
+    setMessage((m) => m + "?")
+  }
+
+  if (count === 2) {
+    return "No counter!"
+  }
 
   return (
     <div className="rounded p-6 border border-slate-400 text-center">
