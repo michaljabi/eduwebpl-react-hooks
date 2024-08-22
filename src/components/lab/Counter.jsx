@@ -1,39 +1,11 @@
-import { useEffect, useState } from "react"
 import { Button } from "../ui/Button.jsx"
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react"
 import { Notification } from "../ui/Notification.jsx"
+import { useCounterWithMonster } from "../../hooks/useCounterWithMonster.js"
 
 export function Counter() {
-  const [count, setCount] = useState(1)
-  const [message, setMessage] = useState("hello ")
-  useEffect(() => {
-    console.log("Component created !")
-  }, [])
-  useEffect(() => {
-    if (count === 3) {
-      setMessage("Approaching to the monster...")
-    }
-    if (count === 5) {
-      setMessage((m) => m + ", You are close...")
-    }
-    if (count === 6) {
-      setMessage((m) => m + ", Danger ahead...")
-    }
-    if (count === 7) {
-      setMessage((m) => m + ", You get caught 🧌!")
-    }
-    sayHello()
-  }, [count])
-
-  const isToHigh = count >= 5
-
-  const sayHello = () => {
-    setMessage((m) => m + "?")
-  }
-
-  if (count === 2) {
-    return "No counter!"
-  }
+  const { count, message, addOne, minusOne, resetCounter, isToHigh } =
+    useCounterWithMonster(1)
 
   return (
     <div className="rounded p-6 border border-slate-400 text-center">
@@ -41,24 +13,14 @@ export function Counter() {
         {count}
       </div>
       {message && <Notification>{message}</Notification>}
-      <Button
-        className="m-2"
-        as="secondary"
-        onClick={() => setCount(count - 1)}
-      >
+      <Button className="m-2" as="secondary" onClick={minusOne}>
         <MinusIcon color="red" /> minus
       </Button>
-      <Button
-        onClick={() => {
-          //if (!isToHigh) {
-          setCount(count + 1)
-          // }
-        }}
-      >
+      <Button onClick={addOne}>
         <PlusIcon color="lightgreen" /> plus
       </Button>
       {isToHigh && (
-        <Button as="secondary" onClick={() => setCount(1)}>
+        <Button as="secondary" onClick={resetCounter}>
           <TrashIcon /> reset
         </Button>
       )}
