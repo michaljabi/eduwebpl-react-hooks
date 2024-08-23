@@ -60,6 +60,7 @@ export function PeoplePage({ noOutlet = false }) {
             <SearchBox
               onSearch={(value) => setSearchText(value)}
               value={searchText}
+              debounceBy={300}
             />
           )}
           <List>
