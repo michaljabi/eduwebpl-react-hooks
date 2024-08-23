@@ -6,8 +6,6 @@ import { ThemeContext } from "../context/ThemeContext.jsx"
 export function ThemeToggler() {
   const { theme, themeToggle } = useContext(ThemeContext)
 
-  console.log(theme, themeToggle)
-
   return (
     <div className="relative">
       <Button

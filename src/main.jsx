@@ -7,12 +7,7 @@ import { ThemeContextProvider } from "./context/ThemeContext.jsx"
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeContextProvider
-      value={{
-        theme: "light",
-        themeToggle() {},
-      }}
-    >
+    <ThemeContextProvider>
       <RouterProvider router={router} />
     </ThemeContextProvider>
   </React.StrictMode>,
