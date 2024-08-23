@@ -68,7 +68,7 @@ function LocalInput(
             },
           )}
           ref={ref}
-          defaultValue={value}
+          value={value}
         />
       </div>
       {hasErrorText && (
