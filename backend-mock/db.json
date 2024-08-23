@@ -35,6 +35,11 @@
       "id": "fr6w",
       "email": "roman.davis@inboxhub.xyz",
       "bio": "Roman is a fitness coach who specializes in strength training and nutrition. He works with clients of all levels, helping them achieve their health and fitness goals."
+    },
+    {
+      "id": "2c6e",
+      "name": "Example",
+      "email": "example@hello.com"
     }
   ]
 }

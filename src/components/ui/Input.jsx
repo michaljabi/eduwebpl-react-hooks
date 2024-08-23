@@ -1,7 +1,10 @@
 import PropTypes from "prop-types"
 import classNames from "classnames"
+import { forwardRef } from "react"
 
-Input.propTypes = {
+export const Input = forwardRef(LocalInput)
+
+LocalInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -14,18 +17,21 @@ Input.propTypes = {
   help: PropTypes.string,
 }
 
-export function Input({
-  name,
-  icon,
-  onChange = () => {},
-  onBlur = () => {},
-  value = "",
-  placeholder = "",
-  type = "text",
-  label = "",
-  error = "",
-  help = "",
-}) {
+function LocalInput(
+  {
+    name,
+    icon,
+    onChange = () => {},
+    onBlur = () => {},
+    value = "",
+    placeholder = "",
+    type = "text",
+    label = "",
+    error = "",
+    help = "",
+  },
+  ref,
+) {
   const hasErrorText = Boolean(error)
   const hasHelpText = Boolean(help)
 
@@ -61,7 +67,8 @@ export function Input({
                 hasErrorText,
             },
           )}
-          value={value}
+          ref={ref}
+          defaultValue={value}
         />
       </div>
       {hasErrorText && (
