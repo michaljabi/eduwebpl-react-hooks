@@ -2,11 +2,17 @@ import { PageLayout } from "../layouts/PageLayout.jsx"
 import { Link } from "react-router-dom"
 import { makeExchange } from "../make-exchange.js"
 import { ListItem } from "../components/ui/ListItem.jsx"
-import { CalendarCheckIcon, GiftIcon, WalletIcon } from "lucide-react"
+import {
+  CalendarCheckIcon,
+  GiftIcon,
+  ShuffleIcon,
+  WalletIcon,
+} from "lucide-react"
 import { Notification } from "../components/ui/Notification.jsx"
 import { List } from "../components/ui/List.jsx"
 import { useContext } from "react"
 import { ExchangePartyContext } from "../context/ExchangePartyContext.jsx"
+import { Button } from "../components/ui/Button.jsx"
 
 export function ExchangePage() {
   const { currentParty } = useContext(ExchangePartyContext)
@@ -36,6 +42,10 @@ export function ExchangePage() {
             <CalendarCheckIcon size={20} /> exchange date:{" "}
             <strong>{exchangeDate}</strong>
           </h4>
+          <Button className="mt-6" as="secondary">
+            <ShuffleIcon />
+            Shuffle pairs
+          </Button>
         </div>
       )}
       <List>
