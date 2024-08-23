@@ -1,6 +1,6 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { ListItem } from "../components/ui/ListItem.jsx"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { SearchBox } from "../components/SearchBox.jsx"
 import { Outlet, useNavigate } from "react-router-dom"
 import PropTypes from "prop-types"
@@ -10,6 +10,7 @@ import { InfoIcon } from "lucide-react"
 import { MakeExchangeModalDialog } from "../components/exchange/MakeExchangeModalDialog.jsx"
 import { List } from "../components/ui/List.jsx"
 import { usePeopleQuery } from "../hooks/usePeopleQuery.js"
+import { ExchangePartyContext } from "../context/ExchangePartyContext.jsx"
 
 PeoplePage.propTypes = {
   noOutlet: PropTypes.bool,
@@ -17,6 +18,7 @@ PeoplePage.propTypes = {
 
 export function PeoplePage({ noOutlet = false }) {
   const { data: people, isLoading, errorMessage } = usePeopleQuery([])
+  const { makeParty } = useContext(ExchangePartyContext)
 
   const navigate = useNavigate()
   const [searchText, setSearchText] = useState("")
@@ -25,9 +27,8 @@ export function PeoplePage({ noOutlet = false }) {
 
   function handleModalConfirm({ partyName, giftBudget, exchangeDate }) {
     const selectedPeople = people.filter(({ id }) => selectedIds.includes(id))
-    navigate("/exchange", {
-      state: { people: selectedPeople, partyName, giftBudget, exchangeDate },
-    })
+    makeParty({ people: selectedPeople, partyName, giftBudget, exchangeDate })
+    navigate("/exchange")
   }
 
   function handleOpenDialog() {

@@ -1,16 +1,18 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { makeExchange } from "../make-exchange.js"
 import { ListItem } from "../components/ui/ListItem.jsx"
 import { CalendarCheckIcon, GiftIcon, WalletIcon } from "lucide-react"
 import { Notification } from "../components/ui/Notification.jsx"
 import { List } from "../components/ui/List.jsx"
+import { useContext } from "react"
+import { ExchangePartyContext } from "../context/ExchangePartyContext.jsx"
 
 export function ExchangePage() {
-  const { state = {} } = useLocation() // ⚠️ carefully: state might be null!
-  const pairs = makeExchange(state?.people || [])
+  const { currentParty } = useContext(ExchangePartyContext)
+  const pairs = makeExchange(currentParty?.people || [])
   const isPartyStarted = pairs.length > 1
-  const { partyName, giftBudget, exchangeDate } = state || {}
+  const { partyName, giftBudget, exchangeDate } = currentParty || {}
 
   return (
     <PageLayout title="Exchange of gifts">
