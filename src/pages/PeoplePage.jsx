@@ -2,7 +2,7 @@ import { PageLayout } from "../layouts/PageLayout.jsx"
 import { ListItem } from "../components/ui/ListItem.jsx"
 import { useContext, useState } from "react"
 import { SearchBox } from "../components/SearchBox.jsx"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom"
 import PropTypes from "prop-types"
 import { Notification } from "../components/ui/Notification.jsx"
 import { Button } from "../components/ui/Button.jsx"
@@ -21,7 +21,8 @@ export function PeoplePage({ noOutlet = false }) {
   const { makeParty } = useContext(ExchangePartyContext)
 
   const navigate = useNavigate()
-  const [searchText, setSearchText] = useState("")
+  const [searchParams] = useSearchParams()
+  const [searchText, setSearchText] = useState(searchParams.get("name") || "")
   const [selectedIds, setSelectedIds] = useState([])
   const newExchangeDialogId = "exchangeDialog"
 

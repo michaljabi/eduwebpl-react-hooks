@@ -27,10 +27,6 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "person/:personId",
-        element: <PersonInfoPage />,
-      },
-      {
         path: "exchange",
         element: <ExchangePage />,
       },
