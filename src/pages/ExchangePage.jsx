@@ -1,6 +1,5 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { Link } from "react-router-dom"
-import { makeExchange } from "../make-exchange.js"
 import { ListItem } from "../components/ui/ListItem.jsx"
 import {
   CalendarCheckIcon,
@@ -15,9 +14,8 @@ import { ExchangePartyContext } from "../context/ExchangePartyContext.jsx"
 import { Button } from "../components/ui/Button.jsx"
 
 export function ExchangePage() {
-  const { currentParty } = useContext(ExchangePartyContext)
-  const pairs = makeExchange(currentParty?.people || [])
-  const isPartyStarted = pairs.length > 1
+  const { currentParty, isPartyStarted, pairs, shufflePairs } =
+    useContext(ExchangePartyContext)
   const { partyName, giftBudget, exchangeDate } = currentParty || {}
 
   return (
@@ -42,7 +40,7 @@ export function ExchangePage() {
             <CalendarCheckIcon size={20} /> exchange date:{" "}
             <strong>{exchangeDate}</strong>
           </h4>
-          <Button className="mt-6" as="secondary">
+          <Button className="mt-6" as="secondary" onClick={shufflePairs}>
             <ShuffleIcon />
             Shuffle pairs
           </Button>
