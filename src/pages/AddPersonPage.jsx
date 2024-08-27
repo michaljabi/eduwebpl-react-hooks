@@ -4,7 +4,15 @@ import { peopleService } from "../services/peopleService.js"
 import { Input } from "../components/ui/Input.jsx"
 import { Button } from "../components/ui/Button.jsx"
 
+import JSConfetti from "js-confetti"
+import { useRef } from "react"
+
 export function AddPersonPage() {
+  const confettiRef = useRef(null)
+  if (confettiRef.current === null) {
+    confettiRef.current = new JSConfetti()
+  }
+
   const formik = useFormik({
     initialValues: {
       personName: "",
@@ -14,6 +22,7 @@ export function AddPersonPage() {
       try {
         const { personName: name, email } = values
         await peopleService.addPerson({ name, email })
+        confettiRef.current.addConfetti()
         actions.resetForm()
       } catch (e) {
         console.error(e)

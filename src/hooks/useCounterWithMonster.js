@@ -19,7 +19,7 @@ export function useCounterWithMonster(initialCount) {
     if (count === 7) {
       setMessage((m) => m + ", You get caught 🧌!")
     }
-    sayHello()
+    //sayHello()
   }, [count])
 
   const isToHigh = count >= 5

@@ -2,10 +2,17 @@ import { Button } from "../ui/Button.jsx"
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react"
 import { Notification } from "../ui/Notification.jsx"
 import { useCounterWithMonster } from "../../hooks/useCounterWithMonster.js"
+import { useEffect, useRef } from "react"
 
 export function Counter() {
   const { count, message, addOne, minusOne, resetCounter, isToHigh } =
     useCounterWithMonster(1)
+
+  const renderCounter = useRef(1)
+  useEffect(() => {
+    renderCounter.current++
+    console.log("I rendered", renderCounter.current, "times")
+  })
 
   return (
     <div className="rounded p-6 border border-slate-400 text-center">
@@ -19,6 +26,15 @@ export function Counter() {
       <Button onClick={addOne}>
         <PlusIcon color="lightgreen" /> plus
       </Button>
+      {/*<Button
+        onClick={() => {
+          renderCounter.current++
+
+        }}
+        as="secondary"
+      >
+        <PlusIcon /> plus stateless
+      </Button>*/}
       {isToHigh && (
         <Button as="secondary" onClick={resetCounter}>
           <TrashIcon /> reset
