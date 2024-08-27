@@ -1,6 +1,6 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { ListItem } from "../components/ui/ListItem.jsx"
-import { useContext, useRef, useState } from "react"
+import { useContext, useMemo, useRef, useState } from "react"
 import { SearchBox } from "../components/SearchBox.jsx"
 import { Outlet, useNavigate, useSearchParams } from "react-router-dom"
 import PropTypes from "prop-types"
@@ -44,9 +44,15 @@ export function PeoplePage({ noOutlet = false }) {
     setSelectedIds([...selectedIds, id])
   }
 
-  const filteredPeople = people.filter(({ name }) =>
-    name.toLowerCase().includes(searchText.toLowerCase()),
-  )
+  const filteredPeople = useMemo(() => {
+    return people.filter(({ name }) => {
+      for (let x = 0; x <= 200_000_000; x++) {
+        /* empty */
+      }
+      return name.toLowerCase().includes(searchText.toLowerCase())
+    })
+  }, [people, searchText])
+
   const isDataReady = !isLoading && !errorMessage
 
   return (

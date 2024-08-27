@@ -1,5 +1,14 @@
-export function Inception() {
-  console.log("🛏️ %cInception", `color: teal`, "fired")
+import { memo } from "react"
+import PropTypes from "prop-types"
+
+export const Inception = memo(LocalInception)
+
+LocalInception.propTypes = {
+  isShown: PropTypes.bool,
+}
+
+export function LocalInception({ isShown = false }) {
+  console.log("🛏️ %cInception", `color: teal`, "fired", isShown)
   return (
     <div>
       <FirstDream />
@@ -7,10 +16,10 @@ export function Inception() {
   )
 }
 
-function FirstDream() {
+const FirstDream = memo(function FirstDream() {
   console.log("1️⃣ %cFirstDream", `color: teal`, "fired")
   return <SecondDream />
-}
+})
 
 function SecondDream() {
   console.log("2️⃣ %cSecondDream", `color: teal`, "fired")
