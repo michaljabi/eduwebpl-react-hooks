@@ -4,27 +4,28 @@ import { Input } from "../ui/Input.jsx"
 import { CalendarIcon, DollarSignIcon } from "lucide-react"
 
 import { useForm } from "react-hook-form"
+import { forwardRef } from "react"
 
-MakeExchangeModalDialog.propTypes = {
-  dialogId: PropTypes.string,
+export const MakeExchangeModalDialog = forwardRef(LocalMakeExchangeModalDialog)
+
+LocalMakeExchangeModalDialog.propTypes = {
   onConfirm: PropTypes.func,
 }
 
-export function MakeExchangeModalDialog({
-  dialogId = "",
-  onConfirm = () => {},
-}) {
+function LocalMakeExchangeModalDialog({ onConfirm = () => {} }, modalRef) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
 
+  // const modalRef = useRef()
+
   const onSubmit = (data) => onConfirm(data)
 
   return (
     <dialog
-      id={dialogId}
+      ref={modalRef}
       className="dark:bg-slate-800 bg-gray-50 lg:mx-auto lg:w-1/2 rounded border border-gray-500 dark:border-slate-900 shadow-xl backdrop:backdrop-blur-sm"
     >
       <form
@@ -67,7 +68,7 @@ export function MakeExchangeModalDialog({
             error={errors?.exchangeDate?.message}
           />
           <div className="flex items-center justify-end mt-4">
-            <Button as="secondary" type="submit">
+            <Button as="secondary" onClick={() => modalRef.current.close()}>
               Cancel
             </Button>
             <Button type="submit">Make new exchange</Button>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import { Input } from "./ui/Input.jsx"
 import { SearchIcon, LoaderIcon } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useDebounce } from "@uidotdev/usehooks"
 
 SearchBox.propTypes = {
@@ -14,6 +14,8 @@ export function SearchBox({ onSearch, value, debounceBy = 500 }) {
   const [isLoading, setIsLoading] = useState(false)
   const [searchText, setSearchText] = useState(value)
 
+  const inputRef = useRef(null)
+
   const debouncedSearchTerm = useDebounce(searchText, debounceBy)
 
   useEffect(() => {
@@ -21,8 +23,13 @@ export function SearchBox({ onSearch, value, debounceBy = 500 }) {
     setIsLoading(false)
   }, [debouncedSearchTerm, onSearch])
 
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
   return (
     <Input
+      ref={inputRef}
       placeholder="Search..."
       icon={isLoading ? <LoaderIcon /> : <SearchIcon />}
       value={searchText}

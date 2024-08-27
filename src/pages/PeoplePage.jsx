@@ -1,6 +1,6 @@
 import { PageLayout } from "../layouts/PageLayout.jsx"
 import { ListItem } from "../components/ui/ListItem.jsx"
-import { useContext, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { SearchBox } from "../components/SearchBox.jsx"
 import { Outlet, useNavigate, useSearchParams } from "react-router-dom"
 import PropTypes from "prop-types"
@@ -24,7 +24,8 @@ export function PeoplePage({ noOutlet = false }) {
   const [searchParams] = useSearchParams()
   const [searchText, setSearchText] = useState(searchParams.get("name") || "")
   const [selectedIds, setSelectedIds] = useState([])
-  const newExchangeDialogId = "exchangeDialog"
+
+  const modalRef = useRef()
 
   function handleModalConfirm({ partyName, giftBudget, exchangeDate }) {
     const selectedPeople = people.filter(({ id }) => selectedIds.includes(id))
@@ -33,7 +34,7 @@ export function PeoplePage({ noOutlet = false }) {
   }
 
   function handleOpenDialog() {
-    document.querySelector(`#${newExchangeDialogId}`)?.showModal()
+    modalRef.current.showModal()
   }
 
   function handleSelect(id) {
@@ -96,10 +97,7 @@ export function PeoplePage({ noOutlet = false }) {
           </div>
         )}
       </div>
-      <MakeExchangeModalDialog
-        dialogId={newExchangeDialogId}
-        onConfirm={handleModalConfirm}
-      />
+      <MakeExchangeModalDialog ref={modalRef} onConfirm={handleModalConfirm} />
     </PageLayout>
   )
 }
