@@ -10,6 +10,9 @@ function reducer(state, action) {
     case "increment":
       isToHigh = state.count + 1 >= 5
       return { ...state, count: state.count + 1, isToHigh }
+    case "incrementBy":
+      isToHigh = state.count + action.amount >= 5
+      return { ...state, count: state.count + action.amount, isToHigh }
     case "decrement":
       isToHigh = state.count - 1 >= 5
       return { ...state, count: state.count - 1, isToHigh }
@@ -50,7 +53,7 @@ export function Counter() {
       >
         <MinusIcon color="red" /> minus
       </Button>
-      <Button onClick={() => dispatch({ type: "increment" })}>
+      <Button onClick={() => dispatch({ type: "incrementBy", amount: 3 })}>
         <PlusIcon color="lightgreen" /> plus
       </Button>
       {isToHigh && (
