@@ -26,15 +26,6 @@ export function Counter() {
       <Button onClick={addOne}>
         <PlusIcon color="lightgreen" /> plus
       </Button>
-      {/*<Button
-        onClick={() => {
-          renderCounter.current++
-
-        }}
-        as="secondary"
-      >
-        <PlusIcon /> plus stateless
-      </Button>*/}
       {isToHigh && (
         <Button as="secondary" onClick={resetCounter}>
           <TrashIcon /> reset

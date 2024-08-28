@@ -4,7 +4,6 @@ import { Notification } from "../components/ui/Notification.jsx"
 import { Counter } from "../components/lab/Counter.jsx"
 import { Button } from "../components/ui/Button.jsx"
 import { useState } from "react"
-import { Inception } from "../components/lab/Inception.jsx"
 // import { CounterClass } from "../components/lab/CounterClass.jsx"
 
 export function LaboratoryPage() {
@@ -24,11 +23,11 @@ export function LaboratoryPage() {
       <Button as="secondary" onClick={() => setIsShown2(!isShown2)}>
         Toggle counter 2 {isShown2.toString()}
       </Button>
-      {/*<section className="my-8 flex justify-center">
+      <section className="my-8 flex justify-center">
         {isShown && <Counter />}
-        <CounterClass />
-      </section>*/}
-      <Inception isShown={isShown} />
+        {/*<CounterClass />*/}
+      </section>
+      {/*<Inception isShown={isShown} />*/}
     </PageLayout>
   )
 }
