@@ -1,11 +1,12 @@
 import PropTypes from "prop-types"
 import classNames from "classnames"
-import { forwardRef } from "react"
+import { forwardRef, useId } from "react"
 
 export const Input = forwardRef(LocalInput)
 
 LocalInput.propTypes = {
   name: PropTypes.string.isRequired,
+  inputId: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -19,6 +20,7 @@ LocalInput.propTypes = {
 
 function LocalInput(
   {
+    inputId,
     name,
     icon,
     onChange = () => {},
@@ -35,10 +37,15 @@ function LocalInput(
   const hasErrorText = Boolean(error)
   const hasHelpText = Boolean(help)
 
+  const helpTextId = useId()
+
   return (
     <div className="mt-5 mb-3">
       {label && (
-        <label className="mb-[10px] block text-base font-medium text-dark dark:text-white">
+        <label
+          htmlFor={inputId}
+          className="mb-[10px] block text-base font-medium text-dark dark:text-white"
+        >
           {label}
         </label>
       )}
@@ -54,6 +61,7 @@ function LocalInput(
           </div>
         )}
         <input
+          id={inputId}
           name={name}
           onChange={onChange}
           onBlur={onBlur}
@@ -69,6 +77,7 @@ function LocalInput(
           )}
           ref={ref}
           value={value}
+          aria-describedby={hasHelpText ? helpTextId : undefined}
         />
       </div>
       {hasErrorText && (
@@ -88,7 +97,11 @@ function LocalInput(
           <p className="ml-1 text-xs">{error}</p>
         </div>
       )}
-      {hasHelpText && <p className="text-xs text-gray-500 mt-1">{help}</p>}
+      {hasHelpText && (
+        <p className="text-xs text-gray-500 mt-1" id={helpTextId}>
+          {help}
+        </p>
+      )}
     </div>
   )
 }

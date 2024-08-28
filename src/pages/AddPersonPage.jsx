@@ -5,7 +5,7 @@ import { Input } from "../components/ui/Input.jsx"
 import { Button } from "../components/ui/Button.jsx"
 
 import JSConfetti from "js-confetti"
-import { useRef } from "react"
+import { useRef, useId } from "react"
 
 export function AddPersonPage() {
   const confettiRef = useRef(null)
@@ -47,6 +47,9 @@ export function AddPersonPage() {
     },
   })
 
+  const nameId = useId()
+  const emailId = useId()
+
   return (
     <PageLayout title="Add new person">
       <form
@@ -55,6 +58,7 @@ export function AddPersonPage() {
         noValidate
       >
         <Input
+          inputId={nameId}
           label="Name"
           name="personName"
           placeholder=""
@@ -64,6 +68,7 @@ export function AddPersonPage() {
           value={formik.values.personName}
         />
         <Input
+          inputId={emailId}
           label="Email"
           type="email"
           name="email"
@@ -72,6 +77,7 @@ export function AddPersonPage() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
+          help="this allow us to send e-mail about the Exchange"
         />
         <p
           className="flex justify-end mt-6"
